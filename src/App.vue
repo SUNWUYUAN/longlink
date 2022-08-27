@@ -112,7 +112,7 @@ var base64ok = '123'
       validate () {
         this.$refs.form.validate()
         var Base64 = require('js-base64').Base64
-        this.base64ok = "https://longlink.wuyuan.dev/ohhbilibiliyyds/go.html?url="+ Base64.encode(this.linkinput)
+        this.base64ok = "https://longlink.wuyuan.dev/ohhbilibiliyyds/go.html?url="+ Base64.encode("https://"+this.linkinput)
         console.log(this.base64ok)
 
       },
