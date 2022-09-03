@@ -81,13 +81,10 @@ export default {
 
 <style>
 .fatherdiv {
-
   width: max-content;
   height: max-content;
 }
-
 .sondiv {
-
   position: absolute;
   left: 50%;
   top: 50%;
@@ -100,6 +97,7 @@ var base64ok = '123'
 <script>
   export default {
     data: () => ({
+      checkCode: '',
       valid: false,
       linkinput:'',
       base64ok:'',
@@ -112,9 +110,9 @@ var base64ok = '123'
       validate () {
         this.$refs.form.validate()
         var Base64 = require('js-base64').Base64
-        this.base64ok = "https://longlink.wuyuan.dev/ohhbilibiliyyds/go.html?url="+ Base64.encode("https://"+this.linkinput)
+        this.createCode()
+        this.base64ok = "https://longlink.wuyuan.dev/ohhbilibiliyyds/go.html?bilibili_wuyuan_yyds="+ Base64.encode("https://"+this.linkinput)+"#"+this.checkCode
         console.log(this.base64ok)
-
       },
       reset () {
         this.$refs.form.reset()
@@ -122,10 +120,21 @@ var base64ok = '123'
       resetValidation () {
         this.$refs.form.resetValidation()
       },
+      createCode() {
+        let code = '';//声明一个空的字符串值用于后面赋值
+        const codeLength = 20; //验证码的长度，可以根据个人需求改变
+        const random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ]; //随机数的取值范围
+        for (let i = 0; i < codeLength; i++) {
+          //循环遍历codeLength，值是几，就循环几次
+          let index = Math.floor(Math.random() * 36); //Math.floor方法用于返回小于或等于一个给定数字的最大整数；Math.random方法返回 0（含）和 1（不含）之间的随机数
+          code += random[index]; //根据索引取得随机数加到code上
+        }
+        this.checkCode = code; //把code值赋给data中定义好的checkCode
+      },
+
       
     },
-
   }
-
-
 </script>
