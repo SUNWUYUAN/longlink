@@ -31,19 +31,22 @@
                   </v-text-field>
 
 
-                  <v-dialog transition="dialog-bottom-transition" max-width="600">
+                  <v-dialog transition="scroll-y-reverse-transition" max-width="600">
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn v-bind="attrs" v-on="on" :disabled="!valid" color="success" class="mr-4" @click="validate">
                         长</v-btn>
                     </template>
                     <template v-slot:default="dialog">
                       <v-card>
-                        <v-toolbar color="primary" dark>生成完成！</v-toolbar>
-                        <v-card-text>
+                        <v-toolbar color="primary" dark class="text-h5">生成完成！</v-toolbar>
+                        <v-card-text><br />
+                          <h2>您的长链是：</h2>
                           <h4> {{ base64ok }} </h4>
                         </v-card-text>
                         <v-card-actions class="justify-end">
                           <v-btn text @click="dialog.value = false">完成</v-btn>
+                          <!--<v-btn v-clipboard:copy="base64ok">复制
+                          </v-btn>-->
                         </v-card-actions>
                       </v-card>
                     </template>
@@ -135,6 +138,7 @@ var base64ok = '123'
         }
         this.checkCode = code; //把code值赋给data中定义好的checkCode
       },
+
 
       
     },
